@@ -8,6 +8,10 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
+//import spiel.Spiel;
+
+import model.Frog;
+
 public class MainView extends JFrame {
 
 	private static final String SPIELTITEL = "Mein Spiel";
@@ -23,15 +27,17 @@ public class MainView extends JFrame {
 	private static final String PACMANPFAD = "src/data/pacman_links_gruen.gif";
 	private static final int SCHRITT = 10;
 
+	protected Frog frog;
+
 	public static void main(String[] args) {
 		MainView spiel = new MainView();
 	}
 
-	Image bildFrog;
-	Image bildPflaster;
-	Image bildPacman;
-	int frogX = STARTFROGX;
-	int frogY = STARTFROGY;
+	private Image bildFrog;
+	private Image bildPflaster;
+	private Image bildPacman;
+	private int frogX = STARTFROGX;
+	private int frogY = STARTFROGY;
 
 	MainView() {
 
@@ -109,4 +115,19 @@ public class MainView extends JFrame {
 		// }
 
 	}
+	
+	// Singleton:
+	static MainView spielInstanz = null;
+	/**
+	 * Liefert die (einzige) Instanz der Klasse Spiel.
+	 * @return Referenz auf die Instanz der Klasse Spiel.
+	 */
+	public static MainView getInstance() {
+		if (spielInstanz == null) {
+			System.err.println("Noch keine Spiel-Instanz erstellt!");
+			System.exit(-1);
+		} // if
+		return spielInstanz;
+	} // if
+	
 }
